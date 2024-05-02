@@ -6,17 +6,14 @@ This module is type checking
 """
 
 
-from typing import Tuple, List, TypeVar
+from typing import Tuple, List
 
 
-T = TypeVar('T')
-
-
-def zoom_array(lst: Tuple[T, ...], factor: int = 2) -> List[T]:
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """
     Returns zoomed_in
     """
-    zoomed_in: List[T] = [
+    zoomed_in: List = [
         item for item in lst
         for i in range(factor)
     ]
