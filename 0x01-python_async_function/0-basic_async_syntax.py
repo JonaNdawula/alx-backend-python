@@ -17,6 +17,12 @@ async def wait_random(max_delay: int = 10) -> float:
     """
     This function generates a random number
     and returns a random delay
+    
+    Parameters:
+    max_delay: The actual delay. Default 10
+
+    Returns:
+    float: The actual delay
     """
     delay = random.uniform(0, max_delay)
     await asyncio.sleep(delay)
