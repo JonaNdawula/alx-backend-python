@@ -1,7 +1,7 @@
 #!/usr/bash/env python3
 
 import asyncio
-import random
+import  random
 
 
 """
@@ -15,7 +15,8 @@ included and float value) seconds and eventually returns it.
 
 async def wait_random(max_delay: int = 10) -> float:
     """
-    This function returns a random delay
+    This function generates a random number
+    and returns a random delay
     """
     delay = random.uniform(0, max_delay)
     await asyncio.sleep(delay)
