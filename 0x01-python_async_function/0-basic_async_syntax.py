@@ -1,8 +1,7 @@
 #!/usr/bash/env python3
 
 import asyncio
-import  random
-
+import random
 
 """
 This modules  has an
@@ -17,7 +16,7 @@ async def wait_random(max_delay: int = 10) -> float:
     """
     This function generates a random number
     and returns a random delay
-    
+
     Parameters:
     max_delay: The actual delay. Default 10
 
