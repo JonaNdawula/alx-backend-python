@@ -20,9 +20,8 @@ async def measure_runtime() -> float:
     Returns:
     float: Total runtime
     """
-    async_comprehension = __import__('1-async_comprehension')
-    .async_comprehension
+    async_comp = __import__('1-async_comprehension').async_comprehension
     st_time = time.time()
-    await asyncio.gather(*(async_comprehension() for _ in range(4)))
+    await asyncio.gather(*(async_comp() for _ in range(4)))
     en_time = time.time()
     return en_time - st_time
