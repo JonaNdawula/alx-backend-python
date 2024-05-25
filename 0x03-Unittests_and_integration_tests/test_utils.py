@@ -4,7 +4,7 @@ This module contains
 unittets
 """
 import unittest
-from parametized import parametized
+from parameterized import parameterized
 import utils
 
 
