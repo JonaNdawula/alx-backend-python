@@ -21,6 +21,7 @@ class TestGithubOrgClient(unittest.TestCase):
         ("google",),
         ("abc",)
     ])
+
     @patch('client.get_json', return_value={"payload": True})
     def test_org(self, org_name, mock_get):
         """
