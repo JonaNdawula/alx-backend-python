@@ -24,7 +24,7 @@ class TestGithubOrgClient(unittest.TestCase):
         """
         This tests  GithubOrgClient.org
         """
-        test_clent = GithubOrgClient(org_name)
+        test_client = GithubOrgClient(org_name)
         response = test_client.org()
         self.assertEqual(response, {"payload": True})
         expected = f"https://api.github.com/orgs/{arg_name}"
