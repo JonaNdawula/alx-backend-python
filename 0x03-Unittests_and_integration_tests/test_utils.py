@@ -9,6 +9,7 @@ from parameterized import parameterized
 import utils
 from utils import memoize
 
+
 class TestAccessNestedMap(unittest.TestCase):
     """
     TestAccessNestedMap class, tests
