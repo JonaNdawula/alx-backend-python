@@ -65,23 +65,29 @@ class TestMemoize(unittest.TestCase):
     TestMemoize class, tests
     memoize decorator
     """
+
     def test_memoize(self):
         """
         This is a unittest for
         memoize
         """
+
         class TestClass:
             """
             This is a Test class
             """
             def a_method(self):
+                """
+                Methods always returning
+                42
+                """
                 return 42
 
             @memoize
             def a_property(self):
                 """
-                Methods always returning
-                42
+                Returns the memoized
+                property
                 """
                 return self.a_method()
 
