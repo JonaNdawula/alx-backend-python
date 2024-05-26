@@ -15,6 +15,7 @@ class TestGithubOrgClient(unittest.TestCase):
     TestGithubOrgClient class, tests
     GithubOrgClient class
     """
+
     @parameterized.expand([
         ("google"),
         ("abc")
