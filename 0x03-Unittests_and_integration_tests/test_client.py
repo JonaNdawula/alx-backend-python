@@ -87,7 +87,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     """
 
     @classmethod
-    def setupClass(cls):
+    def setUpClass(cls):
         """
         This method sets up the test class
         """
@@ -100,7 +100,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
             """
             if url.endswith("/orgs/octocat"):
                 return Mock(json=lambda: cls.org_payload)
-            if url.endswith("orgs/octocat/repos"):
+            if url.endswith("/orgs/octocat/repos"):
                 return Mock(json=lambda: cls.repos_payload)
             return Mock(json=lambda: {})
 
@@ -117,7 +117,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """
         This tests GithubOrgClient.public_repos
         """
-        test_client = GithubOrgclient("octocat")
+        test_client = GithubOrgClient("octocat")
         self.assertEqual(test_client.public_repos(), self.expected_repos)
 
     def test_public_repos_with_license(self):
