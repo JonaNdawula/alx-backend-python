@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import patch, Mock
 from parameterized import parameterized
 from client import GithubOrgClient
+from fixtures import org_payload, repos_payload, expected_repos, apache2_repos
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -71,3 +72,61 @@ class TestGithubOrgClient(unittest.TestCase):
         test_client = GithubOrgClient("octocat")
         self.assertEqual(test_client.has_license(repo, license_key), expected)
 
+
+@parameterized_class([
+    {"org_payload": org_payload,
+     "repos_payload": repos_payload,
+     "expected_repos": expected_repos,
+     "apache2_repos": apache2_repos
+     }
+])
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """
+    TestIntegrationGithubOrgClient class, tests
+    GithubOrg class
+    """
+
+    @classmethod
+    def setupClass(cls):
+        """
+        This method sets up the test class
+        """
+        cls.get_patcher = patch('requests.get')
+        cls.get = cls.get_patcher.start()
+
+        def side_effect(url):
+            """
+            Is a class method returning Mock
+            """
+            if url.endswith("/orgs/octocat"):
+                return Mock(json=lambda: cls.org_payload)
+            if url.endswith("orgs/octocat/repos"):
+                return Mock(json=lambda: cls.repos_payload)
+            return Mock(json=lambda: {})
+
+        cls.get.side_effect = side_effect
+
+    @classmethod
+    def tearDownClass(cls):
+        """
+        This method tears down the test class
+        """
+        cls.get_patcher.stop()
+
+    def test_public_repos(self):
+        """
+        This tests GithubOrgClient.public_repos
+        """
+        test_client = GithubOrgclient("octocat")
+        self.assertEqual(test_client.public_repos(), self.expected_repos)
+
+    def test_public_repos_with_license(self):
+        """
+        This tests GithubOrgClient. public_repos
+        with license
+        """
+        test_client = GithubOrgClient("octocat")
+        self.assertEqual(
+            test_client.public_repos("apache-2.0"),
+            self.apache2_repos
+        )
