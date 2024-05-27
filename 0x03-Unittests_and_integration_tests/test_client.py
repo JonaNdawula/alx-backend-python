@@ -54,7 +54,7 @@ class TestGithubOrgClient(unittest.TestCase):
         This tests GithubOrgClient.public_repos
         """
         mock_public_repos_url.return_value = \
-        "https://api.github.com/orgs/octocat/repos"
+            "https://api.github.com/orgs/octocat/repos"
         test_client = GithubOrgClient("octocat")
         self.assertEqual(test_client.public_repos(), ["repo1", "repo2"])
         mock_get_json.assert_called_once()
